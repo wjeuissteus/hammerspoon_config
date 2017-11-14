@@ -22,6 +22,12 @@ function openURLinWebView(url)
   
 end
   -- makes smooth transition between itunes track and corresponding youtube video
+ local transitionBackToiTunes = function()
+  state, result = hs.osascript.applescript("tell application \"Safari\" \n set timeStamp to do JavaScript \"function ts() {var player = document.getElementById('movie_player') ||document.getElementsByTagName('embed')[0];player.pauseVideo();return player.getCurrentTime();} ts();\" in document 1 \n return timeStamp \n end tell")
+  hs.itunes.setPosition(result)
+  hs.itunes.play()
+  hs.application.launchOrFocus("itunes")
+ end
 local transitionToVideo = function()
   if hs.itunes.getPlaybackState() ~= hs.itunes.state_playing then return end
   track = hs.itunes.getCurrentTrack()
@@ -57,5 +63,5 @@ local transitionToVideo = function()
 end
 
 return {
-  transitionToVideo = transitionToVideo
+  transitionToVideo = transitionToVideo, transitionBackToiTunes = transitionBackToiTunes
 }
