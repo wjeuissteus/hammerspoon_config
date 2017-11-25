@@ -1,4 +1,4 @@
-local loadingDelay = 6
+local loadingDelay = 7
 local keys = require "api_key"
 local apiKey = keys.youtubeKey
 
@@ -19,19 +19,19 @@ function openURLinWebView(url)
    webViewWindow = webView:hswindow()
    webViewWindow:maximize()
    webViewWindow:raise()
-  
+
 end
-  -- makes smooth transition between itunes track and corresponding youtube video
- local transitionBackToiTunes = function()
+  -- makes smooth transition between spotify track and corresponding youtube video
+ local transitionBackTospotify = function()
   state, result = hs.osascript.applescript("tell application \"Safari\" \n set timeStamp to do JavaScript \"function ts() {var player = document.getElementById('movie_player') ||document.getElementsByTagName('embed')[0];player.pauseVideo();return player.getCurrentTime();} ts();\" in document 1 \n return timeStamp \n end tell")
-  hs.itunes.setPosition(result)
-  hs.itunes.play()
-  hs.application.launchOrFocus("itunes")
+  hs.spotify.setPosition(result)
+  hs.spotify.play()
+  hs.application.launchOrFocus("Spotify")
  end
 local transitionToVideo = function()
-  if hs.itunes.getPlaybackState() ~= hs.itunes.state_playing then return end
-  track = hs.itunes.getCurrentTrack()
-  artist = hs.itunes.getCurrentArtist()
+  if hs.spotify.getPlaybackState() ~= hs.spotify.state_playing then return end
+  track = hs.spotify.getCurrentTrack()
+  artist = hs.spotify.getCurrentArtist()
 
   searchQuery = urlencode(track).."%20"..urlencode(artist).."%20music%20video"
   apiURL = "https://www.googleapis.com/youtube/v3/search/?part=snippet&q="..searchQuery.."&key="..apiKey
@@ -44,7 +44,7 @@ local transitionToVideo = function()
       hs.alert.show("Start playing: \n"..title)
 
       -- determine the current track position
-      currentTrackPosition = hs.itunes.getPosition()+loadingDelay
+      currentTrackPosition = hs.spotify.getPosition()+loadingDelay
       currentTrackPositionSeconds = tostring(math.floor(currentTrackPosition % 60))
       currentTrackPositionMinutes = tostring(math.floor(currentTrackPosition/60))
       -- open youtube url
@@ -53,8 +53,8 @@ local transitionToVideo = function()
       --openURLinWebView(resultYoutubeURL)
       if timer then timer:stop() timer = nil end
       timer = hs.timer.delayed.new(loadingDelay, function()  
-        -- pause itunes
-        hs.itunes.pause()
+        -- pause spotify
+        hs.spotify.pause()
       end):start()
     else
       hs.alert.show("Error connecting to Youtube API")
@@ -63,5 +63,5 @@ local transitionToVideo = function()
 end
 
 return {
-  transitionToVideo = transitionToVideo, transitionBackToiTunes = transitionBackToiTunes
+  transitionToVideo = transitionToVideo, transitionBackTospotfiy = transitionBackTospotify
 }
