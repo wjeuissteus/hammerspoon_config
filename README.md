@@ -21,6 +21,15 @@ Working with Safari and Chrome
 
 
 
+![img](https://user-images.githubusercontent.com/32109884/37931384-bc7d14a6-3145-11e8-95f6-1501767b5a4e.png)
+
+![img2](https://user-images.githubusercontent.com/32109884/37931383-bc615d42-3145-11e8-8948-3e40340ec791.png)
+
+
+
+
+
+
 
 
 
