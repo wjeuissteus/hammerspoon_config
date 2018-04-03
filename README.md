@@ -10,6 +10,9 @@ Working with Safari and Chrome
 
 * Spotify to Youtube-Video:`musicVideo.transitionfromSpotify`
 
+### Sockets
+
+This module simply sends HTTP requests to a given URL. The goal is to control the electrical sockets in your room by utilising the <a href="https://github.com/Stunkymonkey/esp8266-smartclock">esp8266-smartclock</a>.
 
 ---------------------------------------------------------------
 ## How to install
