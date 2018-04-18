@@ -12,7 +12,6 @@ Working with Safari and Chrome
 
 * Spotify to Youtube-Video:`musicVideo.transitionfromSpotify`
 
--
 
 ### Notification
 
@@ -20,7 +19,6 @@ Notification to show Time, Date, Battery and Temperatur (DHT22).
 
 Hotkey by default: `cmd` + `ctrl` + `+`.
 
--
 
 ### Sockets
 
