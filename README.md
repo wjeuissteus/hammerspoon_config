@@ -19,6 +19,8 @@ Notification to show Time, Date, Battery and Temperatur (DHT22).
 
 Hotkey by default: `cmd` + `ctrl` + `+`.
 
+![photo_2018-04-18_14-03-03](https://user-images.githubusercontent.com/32109884/38931533-cb7908f4-4313-11e8-9f54-d9a596a17139.jpg)
+
 
 ### Sockets
 
