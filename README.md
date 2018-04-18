@@ -12,6 +12,16 @@ Working with Safari and Chrome
 
 * Spotify to Youtube-Video:`musicVideo.transitionfromSpotify`
 
+-
+
+### Notification
+
+Notification to show Time, Date, Battery and Temperatur (DHT22).
+
+Hotkey by default: `cmd` + `ctrl` + `+`.
+
+-
+
 ### Sockets
 
 This module simply sends HTTP requests to a given URL. The goal is to control the electrical sockets in your room by utilising the <a href="https://github.com/Stunkymonkey/esp8266-smartclock">esp8266-smartclock</a>.
