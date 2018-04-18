@@ -41,3 +41,19 @@ function reloadConfig(files)
     end
 end
 
+
+-- Show date,time,battery and temperatur using DHT22
+hs.hotkey.bind({ "cmd", "ctrl"},'+', function()
+    local seconds = 3
+    local message = os.date("%I:%M%p") .. "\n" .. os.date("%a %b %d") .. "\nBattery: " ..
+    hs.battery.percentage() .. "%"
+    httpStatus, body, header = hs.http.doRequest("http://192.168.178.34/sensorData", "GET", nil, nil)
+        if httpStatus==200 then
+            responseTable = hs.json.decode(body)
+            temperaturId = responseTable.temperatur
+            message = message .. "\n Temperatur: \n"..temperaturId..""  
+
+        end
+        hs.alert.show(message, seconds)
+
+  end)
